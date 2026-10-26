@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { UserProfile, ContactRequest, ProfileStatus } from '../types';
 import { OFFICIAL_WHATSAPP, WHATSAPP_RAW } from '../data/initialData';
-import { GmailHub } from './GmailHub';
 import {
   ShieldCheck,
   Check,
@@ -21,8 +20,7 @@ import {
   LogOut,
   MapPin,
   ExternalLink,
-  Edit3,
-  Mail,
+  Edit3
 } from 'lucide-react';
 
 interface AdminDashboardProps {
@@ -46,12 +44,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   onDeleteRequest,
   onClose,
 }) => {
-  const [activeTab, setActiveTab] = useState<'profiles' | 'photos' | 'requests' | 'stats' | 'gmail'>('profiles');
-  const [gmailPreFill, setGmailPreFill] = useState<{ to: string; subject: string; body: string }>({
-    to: '',
-    subject: '',
-    body: '',
-  });
+  const [activeTab, setActiveTab] = useState<'profiles' | 'photos' | 'requests' | 'stats'>('profiles');
   const [statusFilter, setStatusFilter] = useState<ProfileStatus | 'all'>('en_attente');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedProfileForInspect, setSelectedProfileForInspect] = useState<UserProfile | null>(null);
@@ -175,14 +168,6 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
           >
             <ShieldCheck className="w-4 h-4" />
             <span>Statistiques & Sécurité</span>
-          </button>
-
-          <button
-            onClick={() => { setActiveTab('gmail'); setIsEditing(false); }}
-            className={`px-4 py-2 text-xs font-semibold border-b-2 whitespace-nowrap cursor-pointer transition-colors flex items-center gap-2 ${activeTab === 'gmail' ? 'border-amber-400 text-amber-300' : 'border-transparent text-stone-400 hover:text-white'}`}
-          >
-            <Mail className="w-4 h-4" />
-            <span>Messagerie Gmail</span>
           </button>
         </div>
       </div>
@@ -759,17 +744,6 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
           </div>
         )}
 
-        {/* TAB 5: Messagerie Gmail Officielle */}
-        {activeTab === 'gmail' && (
-          <div className="space-y-4">
-            <GmailHub
-              initialRecipientEmail={gmailPreFill.to}
-              initialSubject={gmailPreFill.subject}
-              initialBody={gmailPreFill.body}
-            />
-          </div>
-        )}
-
       </div>
 
       {/* Profile Inspect / Edit Drawer / Modal */}
@@ -806,22 +780,6 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             </div>
 
             <div className="flex items-center justify-end gap-2 pt-2 border-t border-stone-200">
-              <button
-                onClick={() => {
-                  setGmailPreFill({
-                    to: '',
-                    subject: `Le Chemin pour le Nikah — Fiche ${selectedProfileForInspect.code}`,
-                    body: `Salam Alaykoum ${selectedProfileForInspect.prenomPseudo},\n\nConcernant votre profil ${selectedProfileForInspect.code} sur la plateforme Le Chemin pour le Nikah :\n\n`,
-                  });
-                  setSelectedProfileForInspect(null);
-                  setActiveTab('gmail');
-                }}
-                className="px-3 py-1.5 bg-red-700 hover:bg-red-600 text-white text-xs font-semibold rounded cursor-pointer flex items-center gap-1.5"
-                title="Rédiger un e-mail officiel via Gmail"
-              >
-                <Mail className="w-3.5 h-3.5" />
-                <span>Contacter par Gmail</span>
-              </button>
               <button
                 onClick={() => handleStartEdit(selectedProfileForInspect)}
                 className="px-3 py-1.5 bg-stone-800 text-white text-xs font-semibold rounded cursor-pointer"

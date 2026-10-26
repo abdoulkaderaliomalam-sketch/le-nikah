@@ -5,7 +5,7 @@ import { MessageCircle, Shield, Lock, Heart, ArrowUpRight } from 'lucide-react';
 interface FooterProps {
   onOpenAdmin: () => void;
   onOpenRegister: () => void;
-  onNavigate: (view: 'home' | 'profiles' | 'how-it-works' | 'gmail') => void;
+  onNavigate: (view: 'home' | 'profiles' | 'how-it-works') => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
@@ -66,14 +66,6 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-amber-300 transition-colors cursor-pointer"
                 >
                   Règlement MyNita & Amanata
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('gmail')}
-                  className="hover:text-amber-300 transition-colors cursor-pointer"
-                >
-                  Messagerie Gmail
                 </button>
               </li>
               <li>

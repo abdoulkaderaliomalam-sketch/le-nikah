@@ -5,8 +5,8 @@ interface NavbarProps {
   onOpenRegister: () => void;
   onOpenAdmin: () => void;
   isAdminActive: boolean;
-  activeView: 'home' | 'profiles' | 'how-it-works' | 'admin' | 'gmail';
-  setActiveView: (view: 'home' | 'profiles' | 'how-it-works' | 'admin' | 'gmail') => void;
+  activeView: 'home' | 'profiles' | 'how-it-works' | 'admin';
+  setActiveView: (view: 'home' | 'profiles' | 'how-it-works' | 'admin') => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -40,8 +40,8 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
         </div>
 
-        {/* Zone 2: 5 concise single-line text navigation links */}
-        <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-stone-300">
+        {/* Zone 2: 4 concise single-line text navigation links */}
+        <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-stone-300">
           <button 
             onClick={() => setActiveView('home')} 
             className={`whitespace-nowrap shrink-0 transition-colors cursor-pointer ${activeView === 'home' ? 'text-amber-300 font-semibold' : 'hover:text-white'}`}
@@ -59,12 +59,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             className={`whitespace-nowrap shrink-0 transition-colors cursor-pointer ${activeView === 'how-it-works' ? 'text-amber-300 font-semibold' : 'hover:text-white'}`}
           >
             Fonctionnement & MyNita/Amanata
-          </button>
-          <button 
-            onClick={() => setActiveView('gmail')} 
-            className={`whitespace-nowrap shrink-0 transition-colors cursor-pointer ${activeView === 'gmail' ? 'text-amber-300 font-semibold' : 'hover:text-white'}`}
-          >
-            Messagerie Gmail
           </button>
           <button 
             onClick={onOpenAdmin}

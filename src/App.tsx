@@ -17,7 +17,6 @@ import { ContactPaymentModal } from './components/ContactPaymentModal';
 import { AdminDashboard } from './components/AdminDashboard';
 import { AdminLoginModal } from './components/AdminLoginModal';
 import { HowItWorksSection } from './components/HowItWorksSection';
-import { GmailHub } from './components/GmailHub';
 import { Footer } from './components/Footer';
 
 import { MessageCircle, Shield, CheckCircle2, RotateCcw, Filter, Users, UserPlus } from 'lucide-react';
@@ -26,7 +25,7 @@ export default function App() {
   const [profiles, setProfiles] = useState<UserProfile[]>(() => getStoredProfiles());
   const [requests, setRequests] = useState<ContactRequest[]>(() => getStoredRequests());
 
-  const [activeView, setActiveView] = useState<'home' | 'profiles' | 'how-it-works' | 'admin' | 'gmail'>('home');
+  const [activeView, setActiveView] = useState<'home' | 'profiles' | 'how-it-works' | 'admin'>('home');
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
   const [isAdminLoginOpen, setIsAdminLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
@@ -139,26 +138,6 @@ export default function App() {
             onDeleteRequest={handleDeleteRequest}
             onClose={() => setActiveView('home')}
           />
-        ) : activeView === 'gmail' ? (
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-            <div className="mb-6 flex items-center justify-between">
-              <div>
-                <h1 className="text-2xl font-bold text-stone-900">
-                  Messagerie Gmail & Notifications Matrimoniales
-                </h1>
-                <p className="text-xs text-stone-600 mt-1">
-                  Gestion des correspondances officielles, alertes et confirmations de paiement au Niger
-                </p>
-              </div>
-              <button
-                onClick={() => setActiveView('home')}
-                className="px-3.5 py-1.5 bg-white border border-stone-300 hover:bg-stone-100 text-stone-800 text-xs font-semibold rounded-md transition-colors cursor-pointer"
-              >
-                Retour aux profils
-              </button>
-            </div>
-            <GmailHub />
-          </div>
         ) : (
           <>
             {/* Hero Section */}
