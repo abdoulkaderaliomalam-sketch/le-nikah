@@ -1,0 +1,6 @@
+{
+  "name": "Le Chemin pour le Nikah",
+  "description": "Plateforme matrimoniale islamique sécurisée et respectueuse au Niger. Inscription avec modération stricte, profils célibataires préservant l'anonymat, mise en contact encadrée via MyNita / Amanata et WhatsApp Business officiel.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
